@@ -4,7 +4,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class UserDto {
-	
+
+	@NotNull
+	@NotEmpty
+	private int id;
+
 	@NotNull
 	@NotEmpty
 	private String firstName;
@@ -52,6 +56,10 @@ public class UserDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getId() {return id;}
+
+	public void setId(int id){ this.id = id;}
 	
 	
 }
