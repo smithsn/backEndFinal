@@ -22,7 +22,7 @@ import com.postr.posts.PostRepository;
 public class UserController {
 
 	@Autowired
-	UserRepository userDao;
+	UserService userService;
 	
 	@Autowired
 	PostRepository postDao;
@@ -60,8 +60,7 @@ public class UserController {
 	
 	private UserModel createUserAccount(UserDto accountDto, BindingResult result) {
 		UserModel registered = null;
-		UserService service = new UserService();
-		registered = service.registerNewUserAccount(accountDto);
+		registered = userService.registerNewUserAccount(accountDto);
 		return registered;
 	}
 }
