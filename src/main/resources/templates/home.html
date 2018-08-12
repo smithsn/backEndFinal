@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<title>Postr</title>
+	</head>
+	<body>
+		<nav>
+	        <div>
+	            <a th:href="@{/}"><b>Home</b></a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/register}">Register as a User</a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/login}">Login</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/user}">User</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/post}">Posts</a>
+	        </div>
+    	</nav>
+    	
+    	<h1>Welcome to Postr</h1>
+    	<p>This site allows you to create posts if you are a user or if you aren't you can still read them.</p><br/>
+    	<p>If you would like to become a user please proceed to the <a th:href="@{/register}">registration page</a>.</p><br/>
+    	<p>If you are already a user than please proceed to the <a th:href="@{/login}">login page</a> to start making posts!</p>
+
+
+	</body>

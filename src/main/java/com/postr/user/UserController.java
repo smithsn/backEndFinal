@@ -1,0 +1,48 @@
+package com.postr.user;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.postr.posts.PostModel;
+import com.postr.posts.PostRepository;
+
+@RestController
+public class UserController {
+
+	@Autowired
+	UserRepository userDao;
+	
+	@Autowired
+	PostRepository postDao;
+	
+	@GetMapping("/post")
+	public List<PostModel> getPosts() {
+		List<PostModel> foundPosts = postDao.findAll();
+		return foundPosts;
+	}
+	
+	@GetMapping("/post/{id}")
+	public ResponseEntity<PostModel> getPost(@PathVariable(value="id") Integer id){
+		PostModel foundPost = postDao.findById(id).orElse(null);
+		
+		if(foundPost == null) {
+            return ResponseEntity.notFound().header("PostModel","Nothing found with that id").build();
+        }
+        return ResponseEntity.ok(foundPost);
+	}
+	
+	
+	@PostMapping("/user")
+	public ResponseEntity<PostModel> postPost(@RequestBody PostModel postModel){
+		PostModel createdPost = postDao.save(postModel);
+		
+		return ResponseEntity.ok(createdPost);
+	}
+}

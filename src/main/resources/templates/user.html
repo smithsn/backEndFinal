@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<title>Postr</title>
+		<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<nav>
+	        <div>
+	            <a th:href="@{/}"><b>Home</b></a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/register}">Register as a User</a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/login}">Login</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/user}">User</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/post}">Post</a>
+	        </div>
+    	</nav>
+    	
+    	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
+    	
+    	<form th:action="@{/post}" method="post">
+    		Enter your post here: <input type="text" name="postText" size="140"><br>
+    		<input type="submit" value="Submit">
+    	</form>
+    	
+    	<hr>
+    	
+    	<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+	</body>
+</html>
+    	
