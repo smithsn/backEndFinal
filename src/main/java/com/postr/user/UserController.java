@@ -55,7 +55,7 @@ public class UserController {
 	public ModelAndView registerAccount(@ModelAttribute("user") UserDto accountDto, BindingResult result, WebRequest request, Errors errors) {
 		UserModel registered = new UserModel();
 			registered = createUserAccount(accountDto, result);
-			return new ModelAndView("successRegister", "user", accountDto);	
+			return new ModelAndView("user", "user", accountDto);	
 	}
 	
 	private UserModel createUserAccount(UserDto accountDto, BindingResult result) {
