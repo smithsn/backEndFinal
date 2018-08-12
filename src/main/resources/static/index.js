@@ -1,4 +1,11 @@
 $(document).ready(function() {
+	$('#newUserSubmit').click(function(){
+		$.ajax({
+			type: "POST", 
+			url: "/",
+			data: {}
+		})
+	})
 	$.ajax({
 		type: "GET", 
 		url: "/post",

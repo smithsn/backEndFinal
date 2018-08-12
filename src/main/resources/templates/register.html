@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<title>Postr</title>
+	</head>
+	<body>
+		<nav>
+	        <div>
+	            <a th:href="@{/}">Home</a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/register}"><b>Register as a User</b></a>
+	        </div>
+	        <div>
+	        	<a th:href="@{/login}">Login</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/user}">User</a>
+	        </div>
+	        <div>
+	            <a th:href="@{/post}">Posts</a>
+	        </div>
+    	</nav>
+    	
+    	<h1>Welcome, Please create an account, or go to the <a th:href="@{/login}">Login Page</a> if you already have an account. </h1>
+
+    	<form th:action="@{/}" th:object="${user}" method="post">
+    		<input type="hidden" th:field="*{id}"/>
+    		<div>
+    			<label>First Name: <input th:field="*{firstName}"/></label>
+    		</div>
+    		<div>
+    			<label>Last Name: <input th:field="*{lastName}"/></label>
+    		</div>
+    		<div>
+    			<label>UserName: <input th:field="*{userName}"/></label>
+    		</div>
+    		<div>
+    			<label>Password: <input type="password" th:field="*{password}"/></label>
+    		</div>
+    		<div>
+    			<button id="newUserSubmit">Create User</button>
+    		</div>
+    		
+    	</form>
+    	
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="src/main/resources/static/index.js"></script>
+	</body>

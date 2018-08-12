@@ -4,11 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.postr.posts.PostModel;
 import com.postr.posts.PostRepository;
@@ -44,5 +49,19 @@ public class UserController {
 		PostModel createdPost = postDao.save(postModel);
 		
 		return ResponseEntity.ok(createdPost);
+	}
+	
+	@PostMapping("/register")
+	public ModelAndView registerAccount(@ModelAttribute("user") UserDto accountDto, BindingResult result, WebRequest request, Errors errors) {
+		UserModel registered = new UserModel();
+			registered = createUserAccount(accountDto, result);
+			return new ModelAndView("successRegister", "user", accountDto);	
+	}
+	
+	private UserModel createUserAccount(UserDto accountDto, BindingResult result) {
+		UserModel registered = null;
+		UserService service = new UserService();
+		registered = service.registerNewUserAccount(accountDto);
+		return registered;
 	}
 }
